@@ -106,6 +106,8 @@ class GcodeLine:
             is_flag_parameter = value is True
             if is_flag_parameter:
                 return ""
+            if type(value) is float:
+                return f"{value:{'.4f'}}".rstrip("0").rstrip(".")
             return str(value)
 
         params = " ".join(f"{param}{param_value(param)}" for param in self.params.keys())
